@@ -6,10 +6,6 @@ import machine, neopixel
 npPin = machine.Pin(23, machine.Pin.OUT)
 np = neopixel.NeoPixel(npPin, 3)
 
-onboardBlue = machine.Pin(25)
-onboardBlue.value(1)
-time.sleep(1)
-
 def demo(np):
     n = np.n
  
