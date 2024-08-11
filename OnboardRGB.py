@@ -2,22 +2,28 @@
 
 import time
 import machine, neopixel
-npPin = machine.Pin(23, machine.Pin.OUT)
 # from neopixel import NeoPixel as NP
-np = neopixel.NeoPixel(npPin, 1)
+npPin = machine.Pin(23, machine.Pin.OUT)
+np = neopixel.NeoPixel(npPin, 3)
+
+onboardBlue = machine.Pin(25)
+onboardBlue.value(1)
+time.sleep(1)
 
 def demo(np):
     n = np.n
  
     # cycle
+    print("in cycle")
     for i in range(4 * n):
         for j in range(n):
             np[j] = (0, 0, 0)
-        np[i % n] = (255, 255, 255)
+        np[i % n] = (0, 75, 0)
         np.write()
         time.sleep_ms(225) #original code is 25
 
     # bounce
+    print("in bounce")
     for i in range(4 * n):
         for j in range(n):
             np[j] = (0, 0, 128)
@@ -29,6 +35,7 @@ def demo(np):
         time.sleep_ms(260) #original code is 60
 
     # fade in/out
+    print("in fade")
     for i in range(0, 4 * 256, 8):
         for j in range(n):
             if (i // 256) % 2 == 0:
@@ -48,7 +55,43 @@ def demo(np):
 while True:
     demo(np)
 
+
 """
+
+from neopixel import NeoPixel, pixels.colorHSV
+from time import sleep
+
+## Setup
+NUM_LEDS = 1
+LED_PIN = 23
+pixels = NeoPixel(NUM_LEDS, 0, LED_PIN, "GRB")
+
+## Constants
+red = pixels.colorHSV(0, 255, 255)
+green = pixels.colorHSV(21845, 255, 255)
+blue = pixels.colorHSV(43691, 255, 255)
+
+## Loop
+while True:
+  for hue in range(0, 65535, 500):
+    color = pixels.colorHSV(hue, 255, 255)
+    pixels.fill(color)
+    pixels.show()
+    sleep(0.05)
+
+"""
+
+
+""" 
+
+
+
+while True:
+    demo(np)
+
+
+
+
 from neopixel import NeoPixel
 from machine import Pin
 from time import sleep_ms
@@ -69,11 +112,8 @@ while True:
     np.write()
     sleep_ms(4000)
 
-"""
 
 
-
-"""
 Written w/BH to test onboard neopixel
 from neopixel import NeoPixel
 from machine import Pin
@@ -94,33 +134,8 @@ while True:
     np[0] = (0, 0, 255)
     np.write()
     sleep_ms(4000)
-"""
-
-"""
-from neopixel import NeoPixel
-from time import sleep
-
-## Setup
-NUM_LEDS = 1
-LED_PIN = 23
-pixels = NeoPixel(NUM_LEDS, 0, LED_PIN, "GRB")
-
-## Constants
-red = pixels.colorHSV(0, 255, 255)
-green = pixels.colorHSV(21845, 255, 255)
-blue = pixels.colorHSV(43691, 255, 255)
-
-## Loop
-while True:
-  for hue in range(0, 65535, 500):
-    color = pixels.colorHSV(hue, 255, 255)
-    pixels.fill(color)
-    pixels.show()
-    sleep(0.05)
-"""
 
 
-"""
 import machine, neopixel 
 
 np = neopixel.NeoPixel(machine.Pin(23), 3)
@@ -128,9 +143,8 @@ np = neopixel.NeoPixel(machine.Pin(23), 3)
 np[0] = (255, 0, 0) # set to red, full brightness
 np[1] = (0, 128, 0) # set to green, half brightness
 np[2] = (0, 0, 64)  # set to blue, quarter brightness
-"""
 
-"""
+
 import neopixel
 from machine import Pin
 import time
@@ -177,11 +191,9 @@ def loop():
 
 while True:
     loop()
-"""
 
 
 
-"""
 import neopixel, machine
 
 # 32 LED strip connected to X8.
@@ -197,3 +209,4 @@ for i in range(1):
 n.write()
 
 """
+
