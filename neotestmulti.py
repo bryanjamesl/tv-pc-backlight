@@ -3,6 +3,7 @@ import machine, neopixel
 # from neopixel import NeoPixel as NP
 npPin = machine.Pin(23, machine.Pin.OUT)
 np = neopixel.NeoPixel(npPin, 1)
+slp = 50
 
 def demo(np):
     n = np.n
@@ -10,24 +11,26 @@ def demo(np):
     np[0] = (0, 0, 0)
     time.sleep(1)
 
-    # cycle
-   # print("in loop")
-   # for i in range(0, 250):
-   #     np[0] = (0, 175, i)
-   #     np.write()
-   #     time.sleep_ms(10)   
+    print("in loop")
+    for i in range(0, 250):
+        np[0] = (0, i, 255)
+        np.write()
+        time.sleep_ms(slp)   
+    for i in range(255, 0):
+        np[0] = (0, i, 255)
+        time.sleep_ms(slp)
 
-    np[0] = (0, 0, 0)
+    #np[0] = (0, 0, 0)
     for i in range(0, 255):
         np[0] = (i, 100, 0)
         np.write()
-        time.sleep_ms(10)   
+        time.sleep_ms(slp)   
 
-    np[0] = (0, 0, 0)
+    #np[0] = (0, 0, 0)
     for i in range(0, 255):
-        np[0] = (i, 0, 200)
+        np[0] = (244, 0, i)
         np.write()
-        time.sleep_ms(10)   
+        time.sleep_ms(slp)   
 
 while True:
     demo(np)

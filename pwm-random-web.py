@@ -1,9 +1,9 @@
 from machine import Pin,PWM
 import utime
 import random
-Led_R = PWM(Pin(15))
-Led_G = PWM(Pin(16))
-Led_B = PWM(Pin(17))
+Led_R = PWM(Pin(18))
+Led_G = PWM(Pin(20))
+Led_B = PWM(Pin(21))
 # Define the frequency
 Led_R.freq(2000)  
 Led_G.freq(2000)  

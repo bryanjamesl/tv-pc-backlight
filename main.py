@@ -3,7 +3,7 @@
 # nany mods later...  Bill figured out it will work w/o the resistor (but no current limiting).
 # i added 24 Ohms to the anode, still works 
 # harrison (7-22-24) gratiously took time to re-write the code, w/o even seeing/knowing the h/w.  It works awesome.
-# Key note: I have two RGB pin assignments (the second makes it easier to solder)
+# Key note: I have two RGB pinouts in the hardware (the second makes it easier to solder)
  
 from machine import Pin
 from time import sleep_ms
